@@ -55,3 +55,25 @@ CREATE table hotel (
                     CONSTRAINT etrangerhotel FOREIGN KEY (hotel_numstation) REFERENCES stat(stat_num)
                     );
 
+
+CREATE USER 'util1'@'%' IDENTIFIED BY 'motdepasse';
+GRANT ALL PRIVILEGES ON mabase.* TO "util1"@"%" IDENTIFIED BY 'mot_de_passe';
+FLUSH PRIVILEGES;
+
+CREATE USER 'util2'@'%' IDENTIFIED BY 'motdepasse2';
+GRANT SELECT ON mabase.*  TO util2 IDENTIFIED BY "motdepasse2";
+
+CREATE USER 'util3'@'%' IDENTIFIED BY 'motdepasse3';
+GRANT SELECT ON mabase.*  TO "util3" IDENTIFIED BY "motdepasse2";
+
+
+/*Créez trois utilisateurs util1, util2, util3 pour la base hotel
+util1 doit pouvoir effectuer toutes les actions
+util2 ne peut que sélectionner les informations dans la base
+util3 n'a aucun droit sur la base de données, sauf d'afficher la table fournis
+Une fois les utilisateurs créés, testez en vous connectant et en envoyant les requêtes adaptées.
+GRANT SELECT, INSERT, UPDATE 
+ON hotel.station
+TO dave_loper
+IDENTIFIED BY '1Ksable';
+*/
